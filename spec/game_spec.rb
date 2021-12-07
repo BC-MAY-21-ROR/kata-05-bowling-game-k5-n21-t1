@@ -6,13 +6,13 @@ require_relative '../classes/game'
 RSpec.describe Game do
   it 'number of knock down pines in one shot' do
     game = Game.new
-    expect(game.shot(1)).to be_between(0, 10)
+    expect(game.obtain_first_shot).to be_between(0, 10)
   end
 
   it 'number of knock down pines in second shot' do
     game = Game.new
-    first_shot = game.shot(1)
-    expect(game.shot(2)).to be_between(0, 10 - first_shot)
+    first_shot = game.obtain_first_shot
+    expect(game.obtain_second_shot).to be_between(0, 10 - first_shot)
   end
 
   it 'returns the actual score of the frame 1' do
@@ -23,8 +23,7 @@ RSpec.describe Game do
 
   it 'returns the total score of the game' do
     game = Game.new
-    play = game.play
-    expect(play).to be_between(0, 500)
+    expect(game.score[9]).to be_between(0, 300)
   end
   it 'returns the sum of the before score plus the first shot and the actual score' do
     game = Game.new
